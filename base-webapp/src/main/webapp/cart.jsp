@@ -11,10 +11,6 @@
 
 <div class="container">
     <div class="row py-2">
-        <div class="col-12">
-            <c:url value="/create" var="productCreateUrl"/>
-            <a class="btn btn-primary" href="${productCreateUrl}">Add Product</a>
-        </div>
 
         <div class="col-12">
             <table class="table table-bordered my-2">
@@ -30,25 +26,17 @@
                 <tbody>
 
                 <%-- for (Product product : (List<Product>) request.getAttribute("products")) { --%>
-                <c:forEach var="product" items="${products}">
+                <c:forEach var="product" items="${requestScope.products}">
                 <tr>
                     <th scope="row"><c:out value="${product.id}"/></th>
                     <td><c:out value="${product.name}"/></td>
                     <td><c:out value="${product.description}"/></td>
                     <td><c:out value="${product.price}"/></td>
                     <td>
-                        <c:url value="/edit" var="productEditUrl">
+                        <c:url value="/cart/delete" var="productDeleteUrl">
                             <c:param name="id" value="${product.id}"/>
                         </c:url>
-                        <a class="btn btn-success" href="${productEditUrl}"><i class="fas fa-edit"></i></a>
-                        <c:url value="/delete" var="productDeleteUrl">
-                            <c:param name="id" value="${product.id}"/>
-                        </c:url>
-                        <a class="btn btn-danger" href="${productDeleteUrl}"><i class="far fa-trash-alt"></i></a>
-                        <c:url value="/add" var="productAddUrl">
-                            <c:param name="id" value="${product.id}"/>
-                        </c:url>
-                        <a class="btn btn-info" href="${productAddUrl}"><i class="fas fa-cart-plus"></i></a>
+                        <a class="btn btn-danger" href="${cartDeleteUrl}"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
                 </c:forEach>
@@ -58,7 +46,6 @@
         </div>
     </div>
 </div>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -70,5 +57,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 </body>
-</html>
