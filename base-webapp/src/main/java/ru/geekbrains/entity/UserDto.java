@@ -1,6 +1,7 @@
 package ru.geekbrains.entity;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class UserDto {
 
@@ -14,6 +15,8 @@ public class UserDto {
 
     private String password;
 
+    private Set<Role> roles;
+
     public UserDto() {
     }
 
@@ -22,6 +25,7 @@ public class UserDto {
         this.lastName = user.getLastName();
         this.email = user.getEmail();
         this.password = user.getPassword();
+        this.roles = user.getRoles();
     }
 
     public int getId() {
@@ -62,6 +66,14 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
